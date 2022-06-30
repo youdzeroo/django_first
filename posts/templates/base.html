@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="/styles.css">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1 class = "hello">Hello world!</h1>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet commodi consectetur debitis earum id,
-    ipsam libero odio voluptatibus voluptatum. Amet aperiam assumenda culpa cum dicta facere ipsam labore modi optio!
-</p>
-</body>
-</html>
+{% extends 'posts.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
